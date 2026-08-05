@@ -1,4 +1,5 @@
 import type { ProductsResponse } from "./types";
+import InventoryStats from "@/components/InventoryStats";
 
 const API_URL = "http://localhost:4000";
 const defaultLimit = "6";
@@ -16,6 +17,7 @@ export default async function Home() {
 
   return (
     <main>
+      <InventoryStats />
       <h1>Products</h1>
       <div>
         {products.map((product) => (
