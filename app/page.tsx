@@ -1,4 +1,5 @@
 import type { ProductsResponse } from "./types";
+import InventoryHeader from "../components/InventoryHeader";
 
 const API_URL = "http://localhost:4000";
 const defaultLimit = "6";
@@ -16,7 +17,8 @@ export default async function Home() {
 
   return (
     <main>
-      <h1>Products</h1>
+       <InventoryHeader />
+       
       <div>
         {products.map((product) => (
           <h2 key={product.id}>

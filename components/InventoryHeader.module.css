@@ -1,0 +1,41 @@
+.inventoryHeader {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem;
+    background-color: white;
+}
+
+.headerContent h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: black;
+}
+
+.headerContent p {
+    font-size: 1rem;
+}
+
+.primaryButton {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    justify-content: center;
+    border-radius: 0.5rem;
+    background-color: blue;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+@media (min-width: 48rem) {
+    .inventoryHeader {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2rem;
+    }
+
+    .primaryButton {
+        align-self: auto;
+    }
+}
