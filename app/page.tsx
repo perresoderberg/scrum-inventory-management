@@ -1,6 +1,7 @@
 import ProductTable from "@/components/ProductTable";
 import { getProducts } from "@/services/product-api";
 import InventoryHeader from "../components/InventoryHeader";
+import ProductFilters from "../components/ProductFilters";
 
 export default async function Home() {
   const resp = await getProducts();
@@ -11,6 +12,7 @@ export default async function Home() {
   return (
     <main>
       <InventoryHeader />
+      <ProductFilters />
       <ProductTable products={products} />
     </main>
   );
