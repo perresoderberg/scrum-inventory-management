@@ -24,7 +24,7 @@ export default function Pagination({ currentPage, totalPages }: Props) {
 
   const paginationButtonStyle = "size-9 grid place-items-center border rounded";
   return (
-    <nav className="flex justify-center items-center gap-2 mt-3">
+    <nav className="flex justify-center items-center gap-2 m-3">
       <Link
         href={`/?page=${currentPage - 1}`}
         aria-disabled={currentPage === 1}

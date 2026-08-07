@@ -5,9 +5,25 @@ type Props = {
   product: Product;
 };
 
-const cellStyle = "p-4";
+const cellStyle = "p-4 text-s text-gray-400";
 
 export default function ProductRow({ product }: Props) {
+  if (!product.stock) return null;
+
+  let stockColor = "";
+  let stockText = "";
+
+  if (product.stock === 0) {
+    stockText = "Out Of Stock";
+    stockColor = "text-red-500";
+  } else if (product.stock < 10) {
+    stockText = "Low Stock";
+    stockColor = "text-orange-500";
+  } else {
+    stockText = "In Stock";
+    stockColor = "text-green-500";
+  }
+
   return (
     <tr className="border-b border-gray-200">
       <td className={`${cellStyle} text-left`}>
@@ -15,14 +31,14 @@ export default function ProductRow({ product }: Props) {
           <Image
             src={product.thumbnail}
             alt={product.title}
-            width={30}
-            height={30}
+            width={40}
+            height={40}
             className=""
           />
 
           <div>
-            <div className="font-bold">{product.title}</div>
-            <div className="text-xs text-gray-500">SKU: {product.sku}</div>
+            <div className="text-gray-800 font-bold">{product.title}</div>
+            <div className="text-xs text-gray-300">SKU: {product.sku}</div>
           </div>
         </div>
       </td>
@@ -31,7 +47,10 @@ export default function ProductRow({ product }: Props) {
 
       <td className={`${cellStyle} text-left`}>{product.category?.name}</td>
 
-      <td className={`${cellStyle} text-right`}>{product.stock}</td>
+      <td className={`${cellStyle} text-right`}>
+        <span className={stockColor}>{stockText}</span>
+        <span> ({product.stock})</span>
+      </td>
 
       <td className={`${cellStyle} text-right`}>€{product.price}</td>
 
@@ -40,16 +59,16 @@ export default function ProductRow({ product }: Props) {
           <Image
             src="/icons/trash.svg"
             alt="Delete"
-            width={15}
-            height={15}
+            width={20}
+            height={20}
             className="cursor-pointer"
           />
 
           <Image
             src="/icons/pen.svg"
             alt="Edit"
-            width={15}
-            height={15}
+            width={20}
+            height={20}
             className="cursor-pointer"
           />
         </div>
