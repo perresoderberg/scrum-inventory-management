@@ -5,16 +5,25 @@ import InventoryHeader from "../components/InventoryHeader";
 import ProductFilters from "../components/ProductFilters";
 import AddProductForm from "../components/AddProductForm";
 
-export default async function Home() {
-  const { products, total, page } = await getProducts();
+type Props = {
+  searchParams: Promise<{
+    page?: string;
+  }>;
+};
 
+export default async function Home({ searchParams }: Props) {
+  const params = await searchParams;
+  const page = Number(params.page ?? "1");
+  const { products, pages } = await getProducts(page);
+
+  console.log(`load the page ${params} ${page}`);
   return (
     <main>
       <InventoryHeader />
       <ProductFilters />
       <ProductTable products={products} />
-      <Pagination currentPage={page} totalPages={total} />
       <AddProductForm />
+      <Pagination currentPage={page} totalPages={pages} />
     </main>
   );
 }
