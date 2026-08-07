@@ -1,18 +1,25 @@
 .inventoryHeader {
     display: flex;
     flex-direction: column;
-    padding: 1rem 1rem;
+    gap: 1rem;
+    padding-block: 1.5rem;
+    padding-inline: 1rem;
     background-color: white;
+    border-bottom: 1px solid #dedede;
 }
 
 .headerContent h1 {
     margin: 0;
     font-size: 1.5rem;
     color: black;
+    font-weight: 700;
 }
 
 .headerContent p {
-    font-size: 1rem;
+    margin: 0.35rem 0 0;
+    line-height: 1.5;
+    font-size: 0.875rem;
+    color: #737373;
 }
 
 .primaryButton {
@@ -21,10 +28,13 @@
     gap: .4rem;
     justify-content: center;
     border-radius: 0.5rem;
-    background-color: blue;
+    background-color: #625cff;
     color: white;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
+    padding-block: 0.4rem;
+    padding-inline: 1rem;
+    border: none;
 }
 
 @media (min-width: 48rem) {
@@ -32,7 +42,8 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: 2rem;
+        padding-block: 2rem;
+        padding-inline: 2rem;
     }
 
     .primaryButton {
