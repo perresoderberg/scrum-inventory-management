@@ -8,10 +8,11 @@ export default function InventoryHeader() {
                 <p>Manage and track your global product catalogue across all categories</p>
             </div>
 
-            <button type="button" className={styles.primaryButton}>
+            <a href="#add-product"
+                className={styles.primaryButton}>
                 <span aria-hidden="true">+</span>
                 Add Product
-            </button>
+            </a>
         </header>
     );
 }
