@@ -3,6 +3,7 @@ import Pagination from "@/components/Pagination";
 import { getProducts } from "@/services/product-api";
 import InventoryHeader from "../components/InventoryHeader";
 import ProductFilters from "../components/ProductFilters";
+import AddProductForm from "../components/AddProductForm";
 
 type Props = {
   searchParams: Promise<{
@@ -21,6 +22,7 @@ export default async function Home({ searchParams }: Props) {
       <InventoryHeader />
       <ProductFilters />
       <ProductTable products={products} />
+      <AddProductForm />
       <Pagination currentPage={page} totalPages={pages} />
     </main>
   );
