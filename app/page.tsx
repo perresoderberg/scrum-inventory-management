@@ -4,6 +4,7 @@ import { getProducts } from "@/services/product-api";
 import InventoryHeader from "../components/InventoryHeader";
 import ProductFilters from "../components/ProductFilters";
 import AddProductForm from "../components/AddProductForm";
+import InventoryStats from "../components/InventoryStats";
 
 type Props = {
   searchParams: Promise<{
@@ -20,6 +21,7 @@ export default async function Home({ searchParams }: Props) {
   return (
     <main>
       <InventoryHeader />
+      <InventoryStats products={products} />
       <ProductFilters />
       <ProductTable products={products} />
       <AddProductForm />
