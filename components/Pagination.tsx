@@ -1,25 +1,77 @@
 import Link from "next/link";
 
+type PaginationItem =
+  | {
+      type: "page";
+      page: number;
+    }
+  | {
+      type: "gap";
+      key: "left" | "right";
+    };
+
 type Props = {
   currentPage: number;
   totalPages: number;
 };
 
 export default function Pagination({ currentPage, totalPages }: Props) {
-  console.log("currentPage=" + currentPage + " totalPages=" + totalPages);
-
   if (!totalPages) return null;
 
-  const items: (string | number)[] = [];
+  const items: PaginationItem[] = [];
 
-  for (let page = 1; page <= Math.min(3, totalPages); page++) {
-    items.push(page);
+  // First page (always show)
+  items.push({
+    type: "page",
+    page: 1,
+  });
+
+  // Left gap (...)
+  if (currentPage > 3) {
+    items.push({
+      type: "gap",
+      key: "left",
+    });
   }
-  if (totalPages > 4) {
-    items.push("...");
+
+  // Previous page
+  if (currentPage > 2) {
+    items.push({
+      type: "page",
+      page: currentPage - 1,
+    });
   }
-  if (totalPages > 3) {
-    items.push(totalPages);
+
+  // Current page (If first or last, it is already shown)
+  if (currentPage !== 1 && currentPage !== totalPages) {
+    items.push({
+      type: "page",
+      page: currentPage,
+    });
+  }
+
+  // Next page
+  if (currentPage < totalPages - 1) {
+    items.push({
+      type: "page",
+      page: currentPage + 1,
+    });
+  }
+
+  // Right gap (...)
+  if (currentPage < totalPages - 2) {
+    items.push({
+      type: "gap",
+      key: "right",
+    });
+  }
+
+  // Last page (always show)
+  if (totalPages > 1) {
+    items.push({
+      type: "page",
+      page: totalPages,
+    });
   }
 
   const paginationButtonStyle = "size-9 grid place-items-center border rounded";
@@ -32,23 +84,25 @@ export default function Pagination({ currentPage, totalPages }: Props) {
       >
         {`<`}
       </Link>
-      {items.map((item) =>
-        typeof item === "number" ? (
+      {items.map((item) => {
+        if (item.type === "gap") {
+          return <span key={item.key}>...</span>;
+        }
+
+        return (
           <Link
-            key={item}
-            href={`/?page=${item}`}
+            key={item.page}
+            href={`/?page=${item.page}`}
             className={
-              item === currentPage
+              item.page === currentPage
                 ? `${paginationButtonStyle} bg-gray-600 text-white`
                 : paginationButtonStyle
             }
           >
-            {item}
+            {item.page}
           </Link>
-        ) : (
-          <span key="dots">...</span>
-        ),
-      )}
+        );
+      })}
       <Link
         href={`/?page=${currentPage + 1}`}
         aria-disabled={currentPage === 1}
