@@ -1,7 +1,7 @@
 import { API_URL } from "./api";
 import type { ProductsResponse } from "@/types/product";
 
-const DEFAULT_LIMIT = 6;
+const DEFAULT_LIMIT = 8;
 
 export async function getProducts(
   page: number = 1,
