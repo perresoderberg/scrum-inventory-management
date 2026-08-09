@@ -39,11 +39,6 @@
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
-    /* min-height: 2.75rem; */
-    /* padding: 0.65rem 1rem; */
-    /* border: 1px solid #d6d6d6; */
-    /* border-radius: 0.35rem; */
-    /* background: white; */
     cursor: pointer;
 }
 
