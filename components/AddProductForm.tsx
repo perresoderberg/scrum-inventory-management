@@ -2,6 +2,7 @@ import styles from "./AddProductForm.module.css";
 
 export default function AddProductForm() {
     return (
+        // Formulär för att lägga till en ny produkt
         <section
             id="add-product"
             className={styles.addProductSection}
@@ -10,6 +11,8 @@ export default function AddProductForm() {
             <h2 id="add-product-title">Add Product</h2>
 
             <form className={styles.productForm}>
+
+                {/* Produktbild  */}
                 <div className={styles.formGroup}>
                     <label htmlFor="thumbnail">Image URL</label>
                     <input
@@ -20,6 +23,7 @@ export default function AddProductForm() {
                     />
                 </div>
 
+                {/* Produktinformation */}
                 <div className={styles.formGroup}>
                     <label htmlFor="title">Title</label>
                     <input
@@ -50,6 +54,7 @@ export default function AddProductForm() {
                     />
                 </div>
 
+                {/* Välj produktkategori */}
                 <div className={styles.formGroup}>
                     <label htmlFor="categoryId">Category</label>
                     <select
@@ -63,6 +68,7 @@ export default function AddProductForm() {
                     </select>
                 </div>
 
+                {/* Lager och pris */}
                 <div className={styles.formGroup}>
                     <label htmlFor="stock">Stock</label>
                     <input
@@ -86,6 +92,7 @@ export default function AddProductForm() {
                     />
                 </div>
 
+                {/* Produktbeskrivning */}
                 <div className={styles.formGroup}>
                     <label htmlFor="description">Description</label>
                     <textarea
@@ -96,6 +103,7 @@ export default function AddProductForm() {
                     />
                 </div>
 
+                {/* Knappar för att spara eller återställa formuläret */}
                 <div className={styles.buttonGroup}>
                     <button
                         type="reset"
