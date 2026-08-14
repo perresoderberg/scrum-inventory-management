@@ -8,7 +8,7 @@ type Props = {
 const cellStyle = "p-4 text-s text-gray-400";
 
 export default function ProductRow({ product }: Props) {
-  if (!product.stock) return null;
+  if (product.stock == null) return null;
 
   let stockColor = "";
   let stockText = "";
