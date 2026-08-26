@@ -1,5 +1,8 @@
 import Image from "next/image";
+
 import type { Product } from "@/types/product";
+import DeleteButton from "./DeleteButton";
+import { LowStock } from "@/constants/inventory";
 
 type Props = {
   product: Product;
@@ -16,7 +19,7 @@ export default function ProductRow({ product }: Props) {
   if (product.stock === 0) {
     stockText = "Out Of Stock";
     stockColor = "text-red-500";
-  } else if (product.stock < 10) {
+  } else if (product.stock < LowStock) {
     stockText = "Low Stock";
     stockColor = "text-orange-500";
   } else {
@@ -56,13 +59,7 @@ export default function ProductRow({ product }: Props) {
 
       <td className={`${cellStyle} text-left`}>
         <div className="flex gap-4">
-          <Image
-            src="/icons/trash.svg"
-            alt="Delete"
-            width={20}
-            height={20}
-            className="cursor-pointer"
-          />
+          <DeleteButton id={product.id} />
 
           <Image
             src="/icons/pen.svg"
