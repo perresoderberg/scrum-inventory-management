@@ -1,6 +1,6 @@
-import { useFormStatus } from "react-dom";
+"use client";
 
-("use client");
+import { useFormStatus } from "react-dom";
 
 export function SaveButton() {
   const { pending } = useFormStatus();

@@ -1,23 +1,25 @@
-import ProductTable from "@/components/ProductTable";
+import ProductTable from "@/components/products/ProductTable";
 import Pagination from "@/components/Pagination";
 import { getProducts } from "@/services/product-api";
 import { getAllProducts } from "@/services/product-api";
-import InventoryHeader from "../components/InventoryHeader";
-import ProductFilters from "../components/ProductFilters";
+import InventoryHeader from "../components/inventory/InventoryHeader";
+import ProductFilters from "../components/products/ProductFilters";
 import AddProductForm from "../components/AddProductForm";
-import InventoryStats from "../components/InventoryStats";
+import InventoryStats from "../components/inventory/InventoryStats";
 import { getCategories } from "@/services/category-api";
 
-type Props = {
+type HomeProps = {
   searchParams: Promise<{
     page?: string;
     search?: string;
     category?: string;
     stock?: string;
+    sort?: string;
+    order?: "asc" | "desc";
   }>;
 };
 
-export default async function Home({ searchParams }: Props) {
+export default async function Home({ searchParams }: HomeProps) {
   // Hämtar värden från URL:ens searchParams
   const params = await searchParams;
   const page = Number(params.page ?? "1");
@@ -26,6 +28,9 @@ export default async function Home({ searchParams }: Props) {
   const category = params.category ?? "";
   const stock = params.stock ?? "";
 
+  const sort = params.sort ?? "id";
+  const order = params.order ?? "desc";
+
   // Hämtar produkter och kategorier på servern
   const [{ products, pages }, categories, { products: allProducts }] =
     await Promise.all([
@@ -33,6 +38,8 @@ export default async function Home({ searchParams }: Props) {
         search,
         categoryId: category,
         stock,
+        sort,
+        order,
       }),
       getCategories(),
       getAllProducts(),
@@ -43,7 +50,14 @@ export default async function Home({ searchParams }: Props) {
       <InventoryHeader />
       <InventoryStats products={allProducts} />
       <ProductFilters categories={categories} />
-      <ProductTable products={products} />
+      <ProductTable
+        products={products}
+        sort={sort}
+        order={order}
+        search={search}
+        category={category}
+        stock={stock}
+      />
       <Pagination currentPage={page} totalPages={pages} />
       <AddProductForm />
     </main>

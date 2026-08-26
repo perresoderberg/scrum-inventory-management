@@ -1,5 +1,6 @@
 import type { Product } from "@/types/product";
 import Image from "next/image";
+import { LowStock } from "@/constants/inventory";
 
 function InventoryStat(props: {
   label: string;
@@ -28,7 +29,10 @@ export default function InventoryStats({ products }: { products: Product[] }) {
     (product) => product.stock && product.stock > 0,
   ).length; //products.reduce((acc, product) => acc + (product.stock || 0), 0);
   const lowStockProducts = products.filter(
-    (product) => product.stock !== undefined && product.stock < 10,
+    (product) =>
+      product.stock !== undefined &&
+      product.stock > 0 &&
+      product.stock < LowStock,
   ).length;
   const outOfStockProducts = products.filter(
     (product) => product.stock === 0,
