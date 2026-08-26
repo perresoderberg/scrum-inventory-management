@@ -4,7 +4,7 @@ import { getProducts } from "@/services/product-api";
 import { getAllProducts } from "@/services/product-api";
 import InventoryHeader from "../components/inventory/InventoryHeader";
 import ProductFilters from "../components/products/ProductFilters";
-import AddProductForm from "../components/AddProductForm";
+// import AddProductForm from "../components/AddProductForm";
 import InventoryStats from "../components/inventory/InventoryStats";
 import { getCategories } from "@/services/category-api";
 
@@ -48,6 +48,7 @@ export default async function Home({ searchParams }: HomeProps) {
   return (
     <main className="mx-auto">
       <InventoryHeader />
+      {/* <AddProductForm /> */}
       <InventoryStats products={allProducts} />
       <ProductFilters categories={categories} />
       <ProductTable
@@ -59,7 +60,7 @@ export default async function Home({ searchParams }: HomeProps) {
         stock={stock}
       />
       <Pagination currentPage={page} totalPages={pages} />
-      <AddProductForm />
+
     </main>
   );
 }
