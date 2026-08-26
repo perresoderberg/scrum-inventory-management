@@ -1,15 +1,21 @@
 import type { Product } from "@/types/product";
 import Image from "next/image";
 
-
-function InventoryStat(props: { label: string; value: number; icon: string; color?: string }) {
+function InventoryStat(props: {
+  label: string;
+  value: number;
+  icon: string;
+  color?: string;
+}) {
   const { label, value, icon, color } = props;
 
   return (
     <div className="bg-white shadow-sm rounded-2xl h-full p-6 text-center min-w-[180px] flex flex-col items-center justify-between gap-4 basis-full grow sm:basis-1 sm:text-left sm:flex-row sm:items-center">
       <div>
         <p className="text-sm text-gray-500">{label}</p>
-        <p className={`text-2xl font-bold ${color || "text-gray-800"}`}>{value}</p>
+        <p className={`text-2xl font-bold ${color || "text-gray-800"}`}>
+          {value}
+        </p>
       </div>
       <Image src={icon} alt={`${label} Icon`} width={30} height={30} />
     </div>
@@ -18,12 +24,18 @@ function InventoryStat(props: { label: string; value: number; icon: string; colo
 
 export default function InventoryStats({ products }: { products: Product[] }) {
   const totalProducts = products.length;
-  const totalStock = products.filter( product => product.stock && product.stock > 0).length; //products.reduce((acc, product) => acc + (product.stock || 0), 0);
-  const lowStockProducts = products.filter(product => product.stock !== undefined && product.stock < 10).length;
-  const outOfStockProducts = products.filter(product => product.stock === 0).length;
+  const totalStock = products.filter(
+    (product) => product.stock && product.stock > 0,
+  ).length; //products.reduce((acc, product) => acc + (product.stock || 0), 0);
+  const lowStockProducts = products.filter(
+    (product) => product.stock !== undefined && product.stock < 10,
+  ).length;
+  const outOfStockProducts = products.filter(
+    (product) => product.stock === 0,
+  ).length;
 
   return (
-    <article className="bg-gray-100 grow flex flex-wrap gap-6 py-8 px-4 sm:px-0 border border-gray-200 rounded-xl">
+    <article className="bg-gray-100 flex justify-evenly gap-4 p-4 border border-gray-200 rounded-xl">
       <InventoryStat
         label="PRODUCTS"
         value={totalProducts}
@@ -51,4 +63,3 @@ export default function InventoryStats({ products }: { products: Product[] }) {
     </article>
   );
 }
-        
