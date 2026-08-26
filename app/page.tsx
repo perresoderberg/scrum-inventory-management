@@ -1,6 +1,7 @@
 import ProductTable from "@/components/ProductTable";
 import Pagination from "@/components/Pagination";
 import { getProducts } from "@/services/product-api";
+import { getAllProducts } from "@/services/product-api";
 import InventoryHeader from "../components/InventoryHeader";
 import ProductFilters from "../components/ProductFilters";
 import AddProductForm from "../components/AddProductForm";
@@ -19,6 +20,9 @@ type Props = {
 export default async function Home({ searchParams }: Props) {
   // Hämtar värden från URL:ens searchParams
   const params = await searchParams;
+  const page = Number(params.page ?? "1");
+  const { products, pages } = await getProducts(page);
+  const { products: allProducts } = await getAllProducts();
 
   const page = Math.max(1, Number(params.page ?? "1") || 1);
   const search = params.search ?? "";
@@ -35,20 +39,11 @@ export default async function Home({ searchParams }: Props) {
     getCategories(),
   ]);
 
-  // Istället för Promise.all, två separata anrop (mindre effektivt)
-  // const { products, pages } = await getProducts(page, 8, {
-  //     search,
-  //     categoryId: category,
-  //     stock,
-  // });
-
-  // const categories = await getCategories();
-
-  // console.log("Search:", search);
-
   return (
     <main>
       <InventoryHeader />
+      <InventoryStats products={allProducts} />
+      <ProductFilters />
       <InventoryStats products={products} />
       <ProductFilters categories={categories} />
       <ProductTable products={products} />
