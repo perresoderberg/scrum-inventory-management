@@ -46,7 +46,7 @@ export default async function Home({ searchParams }: HomeProps) {
     ]);
 
   return (
-    <main className="mx-auto">
+    <main className="mx-auto bg-[#F5F5F5] w-400">
       <InventoryHeader categories={categories} />
       {/* <AddProductForm /> */}
       <InventoryStats products={allProducts} />
