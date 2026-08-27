@@ -28,7 +28,7 @@ export async function getProducts(
   });
 
   if (filters.search) {
-    params.set("q", filters.search);
+    params.set("title_like", filters.search);
   }
 
   if (filters.categoryId) {
