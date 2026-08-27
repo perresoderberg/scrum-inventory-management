@@ -1,10 +1,12 @@
 import styles from "./AddProductForm.module.css";
+import type { Category } from "@/types/category";
 
 type Props = {
     onCancel: () => void;
+    categories: Category[];
 };
 
-export default function AddProductForm({ onCancel }: Props) {
+export default function AddProductForm({ onCancel, categories }: Props) {
     return (
         // Formulär för att lägga till en ny produkt
         <section
@@ -61,6 +63,7 @@ export default function AddProductForm({ onCancel }: Props) {
                 {/* Välj produktkategori */}
                 <div className={styles.formGroup}>
                     <label htmlFor="categoryId">Category</label>
+
                     <select
                         id="categoryId"
                         name="categoryId"
@@ -69,6 +72,15 @@ export default function AddProductForm({ onCancel }: Props) {
                         <option value="" disabled>
                             Select category
                         </option>
+
+                        {categories.map((category) => (
+                            <option
+                                key={category.id}
+                                value={category.id}
+                            >
+                                {category.name}
+                            </option>
+                        ))}
                     </select>
                 </div>
 

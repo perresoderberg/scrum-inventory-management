@@ -3,8 +3,14 @@
 import { useState } from "react";
 import AddProductForm from "../AddProductForm";
 import styles from "./InventoryHeader.module.css";
+import type { Category } from "@/types/category";
 
-export default function InventoryHeader() {
+
+type Props = {
+    categories: Category[];
+};
+    
+export default function InventoryHeader({ categories }: Props) {
     // Håller reda på om formuläret är öppet eller stängt
     const [isOpen, setIsOpen] = useState(false);
 
@@ -33,12 +39,14 @@ export default function InventoryHeader() {
 
             {/* Formuläret finns kvar i DOM:en så CSS kan animera öppning/stängning */}
             <div
-                className={`${styles.formWrapper} ${
-                    isOpen ? styles.formWrapperOpen : ""
-                }`}
+                className={`${styles.formWrapper} ${isOpen ? styles.formWrapperOpen : ""
+                    }`}
             >
                 <div className={styles.formContent}>
-                    <AddProductForm onCancel={() => setIsOpen(false)} />
+                    <AddProductForm
+                        onCancel={() => setIsOpen(false)}
+                        categories={categories}
+                    />
                 </div>
             </div>
         </>
