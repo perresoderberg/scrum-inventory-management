@@ -1,6 +1,10 @@
 import styles from "./AddProductForm.module.css";
 
-export default function AddProductForm() {
+type Props = {
+    onCancel: () => void;
+};
+
+export default function AddProductForm({ onCancel }: Props) {
     return (
         // Formulär för att lägga till en ny produkt
         <section
@@ -12,7 +16,7 @@ export default function AddProductForm() {
 
             <form className={styles.productForm}>
 
-                {/* Produktbild  */}
+                {/* Produktbild */}
                 <div className={styles.formGroup}>
                     <label htmlFor="thumbnail">Image URL</label>
                     <input
@@ -103,17 +107,20 @@ export default function AddProductForm() {
                     />
                 </div>
 
-                {/* Knappar för att spara eller återställa formuläret */}
+                {/* Knappar för att återställa/stänga eller spara formuläret */}
                 <div className={styles.buttonGroup}>
                     <button
                         type="reset"
-                        className={styles.cancelButton}>
+                        className={styles.cancelButton}
+                        onClick={onCancel}
+                    >
                         Cancel
                     </button>
 
                     <button
                         type="submit"
-                        className={styles.saveButton}>
+                        className={styles.saveButton}
+                    >
                         Save Product
                     </button>
                 </div>
