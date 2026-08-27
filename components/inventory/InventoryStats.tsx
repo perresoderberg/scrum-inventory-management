@@ -39,7 +39,7 @@ export default function InventoryStats({ products }: { products: Product[] }) {
   ).length;
 
   return (
-    <article className="bg-gray-100 flex justify-evenly gap-4 p-4 border border-gray-200 rounded-xl">
+    <article className="bg-gray-100 flex justify-evenly gap-4 pt-4 border border-gray-200 rounded-xl">
       <InventoryStat
         label="PRODUCTS"
         value={totalProducts}
