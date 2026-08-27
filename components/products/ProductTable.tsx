@@ -28,7 +28,7 @@ export default function ProductTable({
     <div className="overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
       <table className="w-full">
         <thead>
-          <tr className="border-b border-gray-200">
+          <tr className="border-b border-gray-200 bg-[#FAFAFA]">
             <th className={`${headerCellStyle} text-left`}>
               <SortableHeader
                 column="title"

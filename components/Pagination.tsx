@@ -74,7 +74,11 @@ export default function Pagination({ currentPage, totalPages }: Props) {
     });
   }
 
-  const paginationButtonStyle = "size-9 grid place-items-center border rounded";
+  const paginationButtonStyle =
+    "size-9 grid place-items-center border border-gray-200 rounded bg-white";
+  const selectedButtonStyle =
+    "size-9 grid place-items-center border border-gray-200 rounded bg-[#737373] text-white";
+
   return (
     <nav className="flex justify-center items-center gap-2 m-3">
       <Link
@@ -86,7 +90,11 @@ export default function Pagination({ currentPage, totalPages }: Props) {
       </Link>
       {items.map((item) => {
         if (item.type === "gap") {
-          return <span key={item.key}>...</span>;
+          return (
+            <span key={item.key} className="px-1">
+              ...
+            </span>
+          );
         }
 
         return (
@@ -95,7 +103,7 @@ export default function Pagination({ currentPage, totalPages }: Props) {
             href={`/?page=${item.page}`}
             className={
               item.page === currentPage
-                ? `${paginationButtonStyle} bg-gray-600 text-white`
+                ? `${selectedButtonStyle}`
                 : paginationButtonStyle
             }
           >
